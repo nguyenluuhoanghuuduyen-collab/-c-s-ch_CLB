@@ -1,1 +1,125 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#416d55">
+<title>Người bạn đọc sách cùng tôi</title>
+<style>
+:root{--green:#416d55;--deep:#284b3a;--cream:#fbf7ef;--card:#fffdf9;--line:#e8e1d5;--text:#243129;--muted:#7c7a73;--accent:#e3a64f;--danger:#b54c4c;--shadow:0 12px 30px rgba(49,67,54,.09)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:#f6f4ef;color:var(--text)}button,input,textarea{font:inherit}button{cursor:pointer}
+.app{min-height:100vh;display:grid;grid-template-columns:240px minmax(0,1fr)}
+aside{position:sticky;top:0;height:100vh;padding:24px 18px;background:linear-gradient(180deg,#fffaf2,#f4efe4);border-right:1px solid var(--line)}
+.brand{display:flex;gap:12px;align-items:center;margin-bottom:26px}.logo{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:#fff;box-shadow:var(--shadow);font-size:27px}.brand h1{font-size:18px;margin:0;line-height:1.2}.brand small{display:block;color:#957f67;margin-top:3px}
+nav{display:grid;gap:6px}nav button{border:0;background:transparent;text-align:left;padding:12px 13px;border-radius:12px;color:#4d5c53;display:flex;gap:10px;align-items:center}nav button:hover,nav button.active{background:var(--green);color:#fff}
+.aside-note{position:absolute;bottom:20px;left:18px;right:18px;font-size:12px;color:#8d7a68;line-height:1.5}
+main{padding:22px;max-width:1200px;width:100%;margin:auto}.topbar{display:flex;gap:10px;align-items:center;margin-bottom:18px}.search{flex:1;border:1px solid var(--line);background:#fff;border-radius:999px;padding:12px 16px;outline:none}.ghost{border:1px solid var(--line);background:#fff;padding:10px 13px;border-radius:12px;color:var(--deep)}
+.hero{background:linear-gradient(135deg,#355f49,#6d8c72);border-radius:24px;padding:30px;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"📖";position:absolute;right:30px;bottom:-8px;font-size:110px;opacity:.15}.hero h2{font-size:30px;margin:0 0 10px}.hero p{max-width:680px;margin:0;opacity:.92;line-height:1.6}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.primary{border:0;background:#fff;color:var(--deep);padding:11px 16px;border-radius:12px;font-weight:700}.secondary{border:1px solid rgba(255,255,255,.45);background:transparent;color:#fff;padding:11px 16px;border-radius:12px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}.card h3{margin:0 0 8px;font-size:17px}.card p{color:var(--muted);font-size:14px;line-height:1.55;margin:0}.stat{font-size:28px;font-weight:800;color:var(--deep);margin-top:8px}
+.section{display:none}.section.active{display:block}.section-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}.section-head h2{margin:0}.muted{color:var(--muted)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{font-size:13px;font-weight:700;color:#516057;display:block;margin-bottom:6px}input[type=text],input[type=password],input[type=number],textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff;outline:none}textarea{min-height:120px;resize:vertical}
+.btn{border:0;border-radius:12px;background:var(--green);color:#fff;padding:10px 14px;font-weight:700}.btn.light{background:#eef3ef;color:var(--deep)}.btn.danger{background:#fff0f0;color:var(--danger)}
+.stack{display:grid;gap:10px}.book-list,.note-list{display:grid;gap:10px;margin-top:14px}.item{border:1px solid var(--line);border-radius:14px;padding:13px;background:#fff;display:flex;justify-content:space-between;gap:12px;align-items:center}.item-title{font-weight:750}.item small{color:var(--muted)}.actions{display:flex;gap:7px;flex-wrap:wrap}
+.reader{margin-top:14px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#f0eee8;min-height:540px}.reader iframe{width:100%;height:68vh;border:0;background:white}.empty{padding:28px;text-align:center;color:var(--muted)}
+.ai-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px}.chatbox{height:420px;overflow:auto;background:#fbfaf6;border:1px solid var(--line);border-radius:14px;padding:12px}.msg{padding:10px 12px;border-radius:14px;margin:8px 0;line-height:1.55;white-space:pre-wrap}.msg.user{background:#eaf2ec;margin-left:16%}.msg.ai{background:#fff;border:1px solid var(--line);margin-right:10%}
+.goal-wrap{display:grid;grid-template-columns:220px 1fr;gap:18px;align-items:center}.ring{width:170px;height:170px;border-radius:50%;display:grid;place-items:center;margin:auto;background:conic-gradient(var(--green) 0deg,#e8e5dd 0deg)}.ring-inner{width:128px;height:128px;border-radius:50%;background:white;display:grid;place-items:center;text-align:center;box-shadow:inset 0 0 0 1px var(--line)}.ring strong{font-size:29px;color:var(--deep)}
+.notice{padding:12px 14px;border-radius:12px;background:#fff6df;border:1px solid #f0ddad;color:#74541f;font-size:13px;line-height:1.5}footer{margin:24px 0 8px;color:#968b7d;font-size:12px;text-align:center}
+@media(max-width:900px){.app{grid-template-columns:1fr}aside{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line)}nav{grid-template-columns:repeat(3,1fr)}.aside-note{display:none}.grid{grid-template-columns:1fr}.ai-layout,.form-row,.goal-wrap{grid-template-columns:1fr}.topbar{flex-wrap:wrap}.search{min-width:100%}}
+@media(max-width:560px){main{padding:14px}aside{padding:16px}nav{grid-template-columns:1fr 1fr}.hero{padding:22px}.hero h2{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside>
+<div class="brand"><div class="logo">📚</div><div><h1>Người bạn đọc sách cùng tôi</h1><small>Web App cá nhân</small></div></div>
+<nav id="nav">
+<button class="active" data-section="home">🏠 Trang chủ</button>
+<button data-section="library">📖 Thư viện PDF</button>
+<button data-section="advisor">✨ Cố vấn AI</button>
+<button data-section="journal">📝 Nhật ký đọc</button>
+<button data-section="challenge">🎯 Thử thách</button>
+<button data-section="settings">⚙️ Cài đặt AI</button>
+</nav>
+<div class="aside-note">Dữ liệu cá nhân được lưu trên trình duyệt của thiết bị này. Không có danh sách thành viên, kết bạn hay tin nhắn.</div>
+</aside>
+<main>
+<div class="topbar"><input id="globalSearch" class="search" placeholder="Tìm sách, trích dẫn, ghi chú..."><button class="ghost" onclick="showSection('settings')">🔑 API</button></div>
 
+<section id="home" class="section active">
+<div class="hero"><h2>Đọc sâu hơn. Ghi nhớ lâu hơn.</h2><p>Một không gian đọc sách cá nhân: tải PDF, lưu ghi chú, viết nhật ký, đặt mục tiêu và nhờ Gemini hỗ trợ gợi mở khi cần.</p><div class="hero-actions"><button class="primary" onclick="showSection('library')">Mở thư viện</button><button class="secondary" onclick="showSection('journal')">Viết nhật ký</button></div></div>
+<div class="grid">
+<div class="card"><h3>Sách đã thêm</h3><p>Số đầu sách bạn đã đưa vào thư viện.</p><div class="stat" id="statBooks">0</div></div>
+<div class="card"><h3>Nhật ký</h3><p>Số ghi chép đọc sách đã lưu.</p><div class="stat" id="statNotes">0</div></div>
+<div class="card"><h3>Mục tiêu tháng</h3><p>Tiến độ thử thách đọc hiện tại.</p><div class="stat" id="statGoal">0%</div></div>
+</div>
+<div class="panel" style="margin-top:16px"><h3 style="margin-top:0">🌿 Gợi ý hôm nay</h3><p class="muted">Sau mỗi lần đọc, hãy ghi lại 1 câu văn bạn thích, 1 điều bạn hiểu thêm và 1 câu hỏi còn băn khoăn.</p></div>
+</section>
+
+<section id="library" class="section">
+<div class="section-head"><div><h2>📖 Thư viện PDF</h2><div class="muted">Tải sách từ máy để đọc ngay trong trình duyệt.</div></div></div>
+<div class="panel"><input id="pdfInput" type="file" accept="application/pdf"><div class="notice" style="margin-top:12px">GitHub Pages là web tĩnh nên PDF bạn chọn chỉ được mở trên thiết bị hiện tại. Web không tự tải sách của bạn lên máy chủ.</div><div id="bookList" class="book-list"></div><div id="reader" class="reader"><div class="empty">Chọn một file PDF để bắt đầu đọc.</div></div></div>
+</section>
+
+<section id="advisor" class="section">
+<div class="section-head"><div><h2>✨ Cố vấn đọc sách AI</h2><div class="muted">AI hỗ trợ gợi mở, tóm tắt và đặt câu hỏi; bạn vẫn là người đọc và đánh giá nội dung.</div></div></div>
+<div class="ai-layout">
+<div class="panel"><label>Ngữ cảnh / đoạn văn / ghi chú muốn hỏi</label><textarea id="aiContext" placeholder="Dán đoạn văn, ý chính hoặc ghi chú của bạn..."></textarea><label style="margin-top:10px">Câu hỏi</label><textarea id="aiQuestion" style="min-height:90px" placeholder="Ví dụ: Giúp tôi xác định chủ đề và nêu 3 câu hỏi gợi mở."></textarea><div class="actions" style="margin-top:10px"><button class="btn" id="askBtn">Gửi Gemini</button><button class="btn light" onclick="clearChat()">Xóa hội thoại</button></div></div>
+<div class="panel"><div id="chatbox" class="chatbox"><div class="msg ai">Xin chào! Hãy nhập API Key ở mục Cài đặt AI, sau đó gửi câu hỏi của bạn.</div></div></div>
+</div>
+</section>
+
+<section id="journal" class="section">
+<div class="section-head"><div><h2>📝 Nhật ký đọc sách</h2><div class="muted">Lưu cảm nhận, câu văn hay và điều muốn nhớ.</div></div></div>
+<div class="panel">
+<div class="form-row"><div><label>Tên sách / tác phẩm</label><input id="jBook" type="text" placeholder="Tên sách..."></div><div><label>Ngày đọc</label><input id="jDate" type="text"></div></div>
+<label style="margin-top:10px">Câu văn / trích dẫn yêu thích</label><textarea id="jQuote" placeholder="Ghi lại câu văn hoặc ý bạn thích..."></textarea>
+<label style="margin-top:10px">Cảm nhận / điều học được</label><textarea id="jNote" placeholder="Viết suy nghĩ của bạn..."></textarea>
+<div class="actions" style="margin-top:10px"><button class="btn" onclick="saveJournal()">Lưu nhật ký</button><button class="btn light" onclick="exportJournal()">Xuất .txt</button></div>
+<div id="noteList" class="note-list"></div>
+</div>
+</section>
+
+<section id="challenge" class="section">
+<div class="section-head"><div><h2>🎯 Thử thách đọc sách</h2><div class="muted">Tự đặt mục tiêu cho tháng này.</div></div></div>
+<div class="panel goal-wrap"><div class="ring" id="goalRing"><div class="ring-inner"><div><strong id="goalPercent">0%</strong><div class="muted">hoàn thành</div></div></div></div>
+<div><div class="form-row"><div><label>Mục tiêu số cuốn</label><input id="goalTarget" type="number" min="1" value="4"></div><div><label>Đã đọc xong</label><input id="goalDone" type="number" min="0" value="0"></div></div><div class="actions" style="margin-top:12px"><button class="btn" onclick="saveGoal()">Lưu mục tiêu</button></div><p class="muted">Ưu tiên chất lượng đọc và sự phù hợp với thời gian của bạn.</p></div></div>
+</section>
+
+<section id="settings" class="section">
+<div class="section-head"><div><h2>⚙️ Cài đặt Gemini AI</h2><div class="muted">API Key được lưu cục bộ trên trình duyệt, không ghi sẵn trong mã nguồn.</div></div></div>
+<div class="panel stack"><div><label>Gemini API Key</label><input id="apiKey" type="password" placeholder="Dán API Key của bạn..." autocomplete="off"></div><div><label>Tên model</label><input id="modelName" type="text" value="gemini-2.5-flash"></div><div class="notice">Không đưa API Key trực tiếp vào file index.html khi đăng GitHub.</div><div class="actions"><button class="btn" onclick="saveSettings()">Lưu cài đặt</button><button class="btn danger" onclick="clearApiKey()">Xóa API Key</button></div></div>
+</section>
+<footer>Người bạn đọc sách cùng tôi • Web App cá nhân • Dùng được trên GitHub Pages</footer>
+</main>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const LS={books:"rbwm_books_v2",notes:"rbwm_notes_v2",goal:"rbwm_goal_v2",api:"rbwm_api_v2",model:"rbwm_model_v2"};
+let currentPdfUrl=null;
+function readJSON(k,f){try{return JSON.parse(localStorage.getItem(k))??f}catch{return f}}
+function writeJSON(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function showSection(id){document.querySelectorAll(".section").forEach(x=>x.classList.toggle("active",x.id===id));document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x.dataset.section===id));window.scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>showSection(b.dataset.section));
+function renderStats(){const b=readJSON(LS.books,[]),n=readJSON(LS.notes,[]),g=readJSON(LS.goal,{target:4,done:0});$("statBooks").textContent=b.length;$("statNotes").textContent=n.length;const p=Math.max(0,Math.min(100,Math.round((Number(g.done)||0)/(Number(g.target)||1)*100)));$("statGoal").textContent=p+"%"}
+function renderBooks(filter=""){const q=filter.trim().toLowerCase(),rows=readJSON(LS.books,[]).filter(b=>!q||b.name.toLowerCase().includes(q));$("bookList").innerHTML=rows.length?rows.map(b=>`<div class="item"><div><div class="item-title">📘 ${escapeHtml(b.name)}</div><small>Đã thêm: ${escapeHtml(b.date)}</small></div><div class="actions"><button class="btn light" onclick="removeBook('${b.id}')">Xóa</button></div></div>`).join(""):'<div class="empty">Chưa có sách phù hợp.</div>'}
+$("pdfInput").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;if(currentPdfUrl)URL.revokeObjectURL(currentPdfUrl);currentPdfUrl=URL.createObjectURL(f);$("reader").innerHTML=`<iframe src="${currentPdfUrl}#view=FitH"></iframe>`;const books=readJSON(LS.books,[]);if(!books.some(b=>b.name===f.name)){books.unshift({id:String(Date.now()),name:f.name,date:new Date().toLocaleDateString("vi-VN")});writeJSON(LS.books,books)}renderBooks();renderStats()});
+function removeBook(id){writeJSON(LS.books,readJSON(LS.books,[]).filter(x=>x.id!==id));renderBooks();renderStats()}
+function renderNotes(filter=""){const q=filter.trim().toLowerCase(),rows=readJSON(LS.notes,[]).filter(n=>!q||[n.book,n.quote,n.note].join(" ").toLowerCase().includes(q));$("noteList").innerHTML=rows.length?rows.map(n=>`<div class="item"><div style="min-width:0"><div class="item-title">📝 ${escapeHtml(n.book||"Không ghi tên sách")}</div><small>${escapeHtml(n.date||"")}</small>${n.quote?`<div style="margin-top:6px"><i>“${escapeHtml(n.quote)}”</i></div>`:""}${n.note?`<div class="muted" style="margin-top:6px">${escapeHtml(n.note)}</div>`:""}</div><div class="actions"><button class="btn light" onclick="deleteNote('${n.id}')">Xóa</button></div></div>`).join(""):'<div class="empty">Chưa có nhật ký đọc.</div>'}
+function saveJournal(){const book=$("jBook").value.trim(),date=$("jDate").value.trim(),quote=$("jQuote").value.trim(),note=$("jNote").value.trim();if(!book&&!quote&&!note){alert("Hãy nhập ít nhất một nội dung.");return}const notes=readJSON(LS.notes,[]);notes.unshift({id:String(Date.now()),book,date,quote,note});writeJSON(LS.notes,notes);$("jBook").value="";$("jQuote").value="";$("jNote").value="";renderNotes();renderStats()}
+function deleteNote(id){writeJSON(LS.notes,readJSON(LS.notes,[]).filter(n=>n.id!==id));renderNotes();renderStats()}
+function exportJournal(){const notes=readJSON(LS.notes,[]);if(!notes.length){alert("Chưa có nhật ký để xuất.");return}const content=notes.map((n,i)=>`${i+1}. ${n.book||"Không ghi tên sách"}\nNgày: ${n.date||""}\nTrích dẫn: ${n.quote||""}\nCảm nhận: ${n.note||""}\n`).join("\n--------------------\n");const blob=new Blob([content],{type:"text/plain;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="nhat-ky-doc-sach.txt";a.click();URL.revokeObjectURL(url)}
+function saveGoal(){const target=Math.max(1,Number($("goalTarget").value)||1),done=Math.max(0,Number($("goalDone").value)||0);writeJSON(LS.goal,{target,done});renderGoal();renderStats()}
+function renderGoal(){const g=readJSON(LS.goal,{target:4,done:0});$("goalTarget").value=g.target;$("goalDone").value=g.done;const p=Math.max(0,Math.min(100,Math.round((g.done/g.target)*100)));$("goalPercent").textContent=p+"%";$("goalRing").style.background=`conic-gradient(var(--green) ${p*3.6}deg,#e8e5dd 0deg)`}
+function saveSettings(){const key=$("apiKey").value.trim(),model=$("modelName").value.trim()||"gemini-2.5-flash";if(key)localStorage.setItem(LS.api,key);localStorage.setItem(LS.model,model);alert("Đã lưu cài đặt trên trình duyệt này.")}
+function clearApiKey(){localStorage.removeItem(LS.api);$("apiKey").value="";alert("Đã xóa API Key khỏi trình duyệt.")}
+function addMsg(role,text){const d=document.createElement("div");d.className="msg "+role;d.textContent=text;$("chatbox").appendChild(d);$("chatbox").scrollTop=$("chatbox").scrollHeight}
+function clearChat(){$("chatbox").innerHTML='<div class="msg ai">Hội thoại đã được xóa.</div>'}
+$("askBtn").onclick=async()=>{const key=localStorage.getItem(LS.api)||$("apiKey").value.trim(),model=localStorage.getItem(LS.model)||$("modelName").value.trim()||"gemini-2.5-flash",context=$("aiContext").value.trim(),q=$("aiQuestion").value.trim();if(!key){alert("Bạn chưa nhập Gemini API Key.");showSection("settings");return}if(!q){alert("Hãy nhập câu hỏi.");return}addMsg("user",q);$("askBtn").disabled=true;$("askBtn").textContent="Đang hỏi...";const prompt=`Bạn là cố vấn đọc sách thân thiện cho người dùng cá nhân. Chỉ dựa trên ngữ cảnh được cung cấp; nếu chưa đủ dữ liệu, nói rõ. Không bịa nguồn hoặc nội dung sách.\n\nNGỮ CẢNH:\n${context||"(không có)"}\n\nCÂU HỎI:\n${q}`;try{const url=`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(key)}`;const res=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:.5}})}),data=await res.json();if(!res.ok)throw new Error(data?.error?.message||"Không gọi được Gemini API.");const ans=data?.candidates?.[0]?.content?.parts?.map(p=>p.text||"").join("\n").trim()||"Không nhận được nội dung trả lời.";addMsg("ai",ans)}catch(err){addMsg("ai","Lỗi: "+err.message+"\nHãy kiểm tra API Key, tên model và kết nối mạng.")}finally{$("askBtn").disabled=false;$("askBtn").textContent="Gửi Gemini"}}
+$("globalSearch").addEventListener("input",e=>{renderBooks(e.target.value);renderNotes(e.target.value)})
+function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
+(function(){const d=new Date();$("jDate").value=d.toLocaleDateString("vi-VN");$("apiKey").value=localStorage.getItem(LS.api)||"";$("modelName").value=localStorage.getItem(LS.model)||"gemini-2.5-flash";renderBooks();renderNotes();renderGoal();renderStats()})()
+</script>
+</body>
+</html>
